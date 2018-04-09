@@ -5,6 +5,7 @@ namespace app\models;
 
 use app\components\db\ActiveRecord;
 use app\models\query\UsersQuery;
+use yii\base\InvalidArgumentException;
 
 /**
  * Class Users
@@ -64,6 +65,9 @@ class Users extends ActiveRecord
      */
     public static function transferMoneyBetweenUsers(int $fromUserId, int $toUserId, float $amount)
     {
+        if ($amount <= 0) {
+            throw new InvalidArgumentException(\Yii::t('app', 'Amount must be positive.'));
+        }
         $transaction = \Yii::$app->db->beginTransaction();
         try {
             $fromUserId = UsersQuery::findUserById($fromUserId, true);

@@ -19,7 +19,7 @@ class UsersQuery extends ActiveQuery
      * Поиск пользователя по его id
      * @param int $id
      * @param bool $lockForUpdate
-     * @return static
+     * @return Users
      */
     public static function findUserById(int $id, $lockForUpdate = false)
     {
@@ -32,7 +32,7 @@ class UsersQuery extends ActiveQuery
 
     /**
      * @param int $id
-     * @return UsersQuery|array|null|\yii\db\ActiveRecord
+     * @return Users|null
      */
     public static function findByIdForUpdate(int $id)
     {
